@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Veri Yapıları - Veri Yapıları ve Algoritmalar</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Veri Yapıları ve Algoritmalar</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Hoşgeldiniz</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../algoritmalar/" class="nav-link">Algoritmalar</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Veri Yapıları</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../algoritmalar/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#veri-yaplar" class="nav-link">Veri Yapıları</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#linked-list" class="nav-link">Linked List</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#doubly-linked-list" class="nav-link">Doubly Linked List</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#stack" class="nav-link">Stack</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#queue" class="nav-link">Queue</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#binary-tree" class="nav-link">Binary Tree</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="veri-yaplar">Veri Yapıları</h1>
+<p>Bu kısımda programlamada kullanılan veri yapılarına dair anlatımlar yer alıyor.</p>
+<h1 id="linked-list">Linked List</h1>
+<p>Linked List (Bağlantılı Liste) elemanların birbirine sanal bağlantılar yoluyla art arda sıralı bir şekilde bağlandığı bir liste veri yapısıdır.
+<br/>
+<img alt="Linked List PNG" src="../img/linked-list.png" />
+<br/>
+Linked List tipik olarak veri bloğu ve bağ kısmından oluşur. Bağ kısmı bir sonraki veriyi işaret eder. Listenin ilk elemanı head, front veya first (ilk) olarak adlandırılır. Son elemanı ise tail, rear veya last (son) olarak isimlendirilebilir. Liste ara düğümlere doğrudan erişemez, en baştan head olarak adlandırdığımız elemandan başlayarak sıra sıra gitmek zorundadır. Liste üzerinde bir verinin aranması için verinin liste üzerindeki sırası kadar çevrim yapılmak zorundadır. Eğer liste bir sıralı liste değilse yeni eklenen elemanlar son elemanın hemen arkasına eklenebilir. Ancak tail diye adlandırdığımız son eleman değişkeni kullanılmıyorsa gene listenin başından sonuna kadar gidilmesi gerekir. Listede silme işlemi yapılabilmesi için önce silinecek node (düğüm) yani eleman arama yaparak bulunmalıdır. Bulunduktan sonra düğümün bağlantısı silinerek aradan çıkarılır ve bir önceki düğümün bağlantısı silinen düğümden sonra gelen düğüme bağlanır. Böylece silme işlemi gerçekleşir.</p>
+<p>Linked List C İmplementasyonu:</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct baglantiliListe {
+    char mesaj[100];
+    struct baglantiliListe *arka;
+} linkedList;
+
+linkedList *ilk = NULL;
+linkedList *son = NULL;
+
+void ekle(linkedList *eklenecek) {
+    if (ilk != NULL) {
+        son-&gt;arka = eklenecek;
+        son = eklenecek;
+        eklenecek-&gt;arka = NULL;
+    } else {
+        ilk = eklenecek;
+        son = eklenecek;
+        eklenecek-&gt;arka = NULL;
+    }
+}
+
+int listele() {
+    linkedList *p;
+    p = ilk;
+    if (p == NULL) {
+        return -1;
+    }
+    while (p != NULL) {
+        printf(&quot;mesaj: %s\n&quot;, p-&gt;mesaj);
+        p = p-&gt;arka;
+    }
+    return 0;
+}
+
+linkedList *ara(char *aranan) {
+    linkedList *p;
+    p = ilk;
+    while (p) {
+        if (strcmp(p-&gt;mesaj, aranan) == 0) {
+            return p;
+        }
+        p = p-&gt;arka;
+    }
+    return NULL;
+}
+
+linkedList *sil(char *silinecek) {
+    linkedList *p, *birOnceki;
+    p = ilk;
+    birOnceki = NULL;
+
+    while (p != NULL) {
+        if (strcmp(silinecek, p-&gt;mesaj) == 0) {
+            break;
+        }
+        birOnceki = p;
+        p = p-&gt;arka;
+    }
+
+    if (p != NULL) {
+        if (birOnceki == NULL) {
+            if (ilk == son) {
+                ilk = NULL;
+                son = NULL;
+            } else {
+                ilk = ilk-&gt;arka;
+            }
+        } else {
+            birOnceki-&gt;arka = p-&gt;arka;
+            if (birOnceki-&gt;arka == NULL) {
+                son = birOnceki;
+            }
+            free(p);
+            return p;
+        }
+    } else {
+        return NULL;
+    }
+}
+
+int main() {
+    linkedList *p = malloc(sizeof(linkedList));
+    strcpy(p-&gt;mesaj, &quot;Merhaba&quot;);
+    ekle(p);
+
+    linkedList *q = malloc(sizeof(linkedList));
+    strcpy(q-&gt;mesaj, &quot;Nasılsın&quot;);
+    ekle(q);
+
+    printf(&quot;Listeleme sonucu:\n&quot;);
+    listele();
+    printf(&quot;\n&quot;);
+
+    linkedList *r;
+    r = ara(&quot;Nasılsın&quot;);
+    if (r != NULL) {
+        printf(&quot;Bulundu: %s\n&quot;, r-&gt;mesaj);
+    } else {
+        printf(&quot;Bulunamadı.\n&quot;);
+    }
+    printf(&quot;\n&quot;);
+
+    sil(&quot;Nasılsın&quot;);
+    printf(&quot;Silme işlemi sonrası listeleme sonucu:\n&quot;);
+    listele();
+    return 0;
+}
+</code></pre>
+<p>Linked List Python İmplementasyonu:</p>
+<pre><code>class Node: 
+    def __init__(self, data): 
+        self.data = data  
+        self.next = None  
+
+class LinkedList: 
+    def __init__(self):  
+        self.head = None
+        self.tail = None
+
+    def add(self, node):
+        if (self.head != None):
+            self.tail.next = node
+            self.tail = node
+            node.next = None
+        else:
+            self.head = node
+            self.tail = node
+            node.next = None
+
+    def list_nodes(self):
+        h = self.head
+        if (h == None):
+            return -1
+        while (h != None):
+            print(&quot;Data: {0}&quot;.format(h.data))
+            h = h.next
+        return 0
+
+    def search(self, value):
+        h = self.head
+        while (h != None):
+            if (h.data == value):
+                return h
+            h = h.next
+        return None
+
+    def delete(self, value):
+        h = self.head
+        previous = None
+
+        while (h != None):
+            if (h.data == value):
+                break
+            previous = h
+            h = h.next
+
+        if (h != None):
+            if (previous == None):
+                if (self.head == self.tail):
+                    self.head = None
+                    self.tail = None
+                else:
+                    self.head = self.head.next
+            else:
+                previous.next = h.next
+                if (previous.next == None):
+                    self.tail = previous
+                return h
+        else:
+            return None
+
+if __name__ == '__main__':
+    linkedList = LinkedList()
+
+    node1 = Node(&quot;Merhaba&quot;)
+    node2 = Node(&quot;Nasılsın&quot;)
+
+    linkedList.add(node1)
+    linkedList.add(node2)
+
+    linkedList.list_nodes()
+
+    value = linkedList.search(&quot;Nasılsın&quot;).data
+    print(&quot;Found: {0}&quot;.format(value))
+
+    linkedList.delete(&quot;Nasılsın&quot;)
+    print(&quot;Datas after delete operation:&quot;)
+    linkedList.list_nodes()
+</code></pre>
+<h1 id="doubly-linked-list">Doubly Linked List</h1>
+<p>Doubly Linked List (Çift Yönlü Bağlantılı Liste) veri yapısının normal Linked List veya Singly Linked List veri yapısından farkı düğümlerin hem arka hem de öndeki düğümü gösterir şekilde iki farklı sanal bağlantı noktası barındırmasıdır. Dolayısıyla liste üzerinde iki yönlü hareket edilebilir.</p>
+<p>Doubly Linked List öğrenmeden önce Singly Linked List veya diğer adıyla Linked List öğrenmeniz tavsiye edilir.
+<br/>
+<img alt="Doubly Linked List PNG" src="../img/doubly-linked-list.png" />
+<br/>
+Doubly Linked List C İmplementasyonu:</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct ikiYonluBaglantiliListe {
+    char mesaj[100];
+    struct ikiYonluBaglantiliListe *arka;
+    struct ikiYonluBaglantiliListe *on;
+} doublyLinkedList;
+
+doublyLinkedList *ilk = NULL;
+doublyLinkedList *son = NULL;
+
+void ekle(doublyLinkedList *eklenecek) {
+    if (ilk != NULL) {
+        son-&gt;arka = eklenecek;
+        eklenecek-&gt;on = son;
+        son = eklenecek;
+        son-&gt;arka = NULL;
+    } else {
+        ilk = eklenecek;
+        son = eklenecek;
+        ilk-&gt;arka = NULL;
+        ilk-&gt;on = NULL;
+    }
+}
+
+int listele() {
+    doublyLinkedList *p;
+    p = ilk;
+    if (p == NULL) {
+        return -1;
+    }
+    while (p != NULL) {
+        printf(&quot;mesaj: %s\n&quot;, p-&gt;mesaj);
+        p = p-&gt;arka;
+    }
+    return 0;
+}
+
+doublyLinkedList *ara(char *aranan) {
+    doublyLinkedList *p;
+    p = ilk;
+    while(p != NULL) {
+        if (strcmp(p-&gt;mesaj, aranan) == 0) {
+            return p;
+        }
+        p = p-&gt;arka;
+    }
+    return 0;
+}
+
+doublyLinkedList *sil(char *silinecek) {
+    doublyLinkedList *p;
+    p = ara(silinecek);
+    if (p == NULL) {
+        return NULL;
+    }
+
+    if (ilk == p) {
+        if (ilk-&gt;arka != NULL) {
+            ilk = p-&gt;arka;
+            ilk-&gt;on = NULL;
+        } else {
+            ilk = NULL;
+            son = NULL;
+        }
+    } else {
+        p-&gt;on-&gt;arka = p-&gt;arka;
+        if (p == son) {
+            son = son-&gt;on;
+        } else {
+            p-&gt;arka-&gt;on = p-&gt;on;
+        }
+    }
+    free(p);
+    return p;
+}
+
+int main() {
+    doublyLinkedList *p = malloc(sizeof(doublyLinkedList));
+    strcpy(p-&gt;mesaj, &quot;Merhaba&quot;);
+    ekle(p);
+
+    doublyLinkedList *q = malloc(sizeof(doublyLinkedList));
+    strcpy(q-&gt;mesaj, &quot;Nasılsın&quot;);
+    ekle(q);
+
+    printf(&quot;Listeleme sonucu:\n&quot;);
+    listele();
+    printf(&quot;\n&quot;);
+
+    doublyLinkedList *r;
+    r = ara(&quot;Nasılsın&quot;);
+    if (r != NULL) {
+        printf(&quot;Bulundu: %s\n&quot;, r-&gt;mesaj);
+    } else {
+        printf(&quot;Bulunamadı.\n&quot;);
+    }
+    printf(&quot;\n&quot;);
+
+    sil(&quot;Nasılsın&quot;);
+    printf(&quot;Silme işlemi sonrası listeleme sonucu:\n&quot;);
+    listele();
+}
+</code></pre>
+<p>Doubly Linked List Python İmplementasyonu:</p>
+<pre><code>class Node:
+    def __init__(self, data):
+        self.data = data
+        self.prev = None
+        self.next = None
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def add(self, node):
+        if (self.head != None):
+            self.tail.next = node
+            node.prev = self.tail
+            self.tail = node
+            self.tail.next = None
+        else:
+            self.head = node
+            self.tail = node
+            self.head.next = None
+            self.head.prev = None
+
+    def list_nodes(self):
+        h = self.head
+        if (h == None):
+            return -1
+        while (h != None):
+            print(&quot;Data: {0}&quot;.format(h.data))
+            h = h.next
+        return 0
+
+    def search(self, value):
+        h = self.head
+        while (h != None):
+            if (h.data == value):
+                return h
+            h = h.next
+        return None
+
+    def delete(self, value):
+        h = self.search(value)
+        if (h == None):
+            return None
+
+        if (self.head == h):
+            if (self.head.next != None):
+                self.head = h.next
+                self.head.prev = None
+            else:
+                self.head = None
+                self.tail = None
+        else:
+            h.prev.next = h.next
+            if (h == self.tail):
+                self.tail = self.tail.prev
+            else:
+                h.next.prev = h.prev
+        return h
+
+if __name__ == '__main__':
+    doublyLinkedList = DoublyLinkedList()
+
+    node1 = Node(&quot;Merhaba&quot;)
+    node2 = Node(&quot;Nasılsın&quot;)
+
+    doublyLinkedList.add(node1)
+    doublyLinkedList.add(node2)
+
+    doublyLinkedList.list_nodes()
+
+    value = doublyLinkedList.search(&quot;Nasılsın&quot;).data
+    print(&quot;Found {0}&quot;.format(value))
+
+    doublyLinkedList.delete(&quot;Nasılsın&quot;)
+    print(&quot;Datas after delete operation&quot;)
+    doublyLinkedList.list_nodes()
+</code></pre>
+<h1 id="stack">Stack</h1>
+<p>Stack (Yığın) son giren ilk çıkar (Last In First Out – LIFO) prensibiyle çalışan bir veri yapısıdır. Yani en son eklediğimiz eleman yığından veri almak istediğimizde elde ettiğimiz elemandır. Örnek olarak bir karpuz çuvalına karpuzları koyduğumuzu düşünelim. Çuvaldan karpuz almak istediğimizde aldığımız karpuz son koyduğumuz karpuzdur. Stack veri yapısında yığına yeni eklenecek verinin nerede tutulacağını gösteren bir stack pointer (yığın işaretçisi) bulunur. Bu yığın işaretçisi yığında en son eklenen elemandan sonraki boş alanı gösterir.
+<br/>
+<img alt="Stack JPG" src="../img/stack.jpg" />
+<br/>
+Stack C İmplementasyonu:</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+#define CAPACITY 500
+int stackData[CAPACITY] = {0};
+int stackPointer = 0;
+
+int push(int data) {
+    if (stackPointer &gt;= CAPACITY) {
+        printf(&quot;Stack is full.&quot;);
+        return -1;
+    } else {
+        stackData[stackPointer] = data;
+        stackPointer++;
+    }
+}
+
+int pop() {
+    if (stackPointer &lt;= 0) {
+        printf(&quot;Stack is empty.&quot;);
+        return -1;
+    } else {
+        return stackData[--stackPointer];
+    }
+}
+
+void clear() {
+    stackPointer = 0;
+}
+
+int main() {
+
+    push(10);
+    push(20);
+    push(30);
+
+    printf(&quot;Items after push\n&quot;);
+    for (int i=0; i&lt;stackPointer; i++) {
+        printf(&quot;Item %d: %d\n&quot;, i, stackData[i]);
+    }
+    printf(&quot;\n&quot;);
+
+    pop();
+
+    printf(&quot;Items after pop\n&quot;);
+    for (int i=0; i&lt;stackPointer; i++) {
+        printf(&quot;Item %d: %d\n&quot;, i, stackData[i]);
+    }
+    printf(&quot;\n&quot;);
+
+    clear();
+    printf(&quot;Items after clear\n&quot;);
+    for (int i=0; i&lt;stackPointer; i++) {
+        printf(&quot;Item %d: %d\n&quot;, i, stackData[i]);
+    }
+    printf(&quot;\n&quot;);
+
+    return 0; 
+}
+</code></pre>
+<p>Stack Python İmplementasyonu:</p>
+<pre><code>class Stack:
+    def __init__(self):
+        self.stackData = []
+        self.stackPointer = 0
+
+    def push(self, data):
+        self.stackData.append(data)
+        self.stackPointer += 1
+
+    def pop(self):
+        if (len(self.stackData) == 0):
+            print(&quot;Stack is full.&quot;)
+            return -1
+        else:
+            self.stackPointer -= 1
+            return self.stackData[self.stackPointer]
+
+    def clear(self):
+        self.stackPointer = 0
+
+if __name__ == '__main__':
+    stack = Stack()
+    stack.push(10)
+    stack.push(20)
+    stack.push(30)
+    print('Items after push')
+    for i in range(0, stack.stackPointer):
+        print('Item: {0}: {1}'.format(i, stack.stackData[i]))
+    print()
+
+    stack.pop()
+    print('Items after pop')
+    for i in range(0, stack.stackPointer):
+        print('Item: {0}: {1}'.format(i, stack.stackData[i]))
+    print()
+
+    stack.clear()
+    print('Items after clear')
+    for i in range(0, stack.stackPointer):
+        print('Item: {0}: {1}'.format(i, stack.stackData[i]))
+    print()
+</code></pre>
+<h1 id="queue">Queue</h1>
+<p>Queue (Kuyruk), stack veri yapısının aksine FIFO (First In Fırst Out) yani ilk giren ilk çıkar prensibine göre çalışır. Kuyruk veri yapısı lokantaya ilk gelip sipariş veren müşterinin siparişinin, sonraki gelenlerden önce verilmesidir örneğiyle özetlenebilir.
+<br/>
+<img alt="Queue PNG" src="../img/queue.png" />
+<br/>
+Queue C İmplementasyonu:</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;limits.h&gt;
+
+struct Queue {
+    int front, rear, size;
+    unsigned capacity;
+    int *array;
+};
+
+struct Queue *createQueue(unsigned capacity) {
+    struct Queue *queue = (struct Queue*) malloc(sizeof(struct Queue));
+    queue-&gt;capacity = capacity;
+    queue-&gt;front = queue-&gt;size = 0;
+    queue-&gt;rear = capacity - 1;
+    queue-&gt;array = (int*)malloc(queue-&gt;capacity * sizeof(int));
+    return queue;
+}
+
+int isFull(struct Queue *queue) {
+    return (queue-&gt;size == queue-&gt;capacity);
+}
+
+int isEmpty(struct Queue *queue) {
+    return (queue-&gt;size == 0);
+}
+
+void enqueue(struct Queue *queue, int item) {
+    if (isFull(queue)) {
+        return;
+    }
+    queue-&gt;rear = (queue-&gt;rear + 1) % queue-&gt;capacity;
+    queue-&gt;array[queue-&gt;rear] = item;
+    queue-&gt;size = queue-&gt;size + 1;
+    printf(&quot;%d kuyruğa eklendi.\n&quot;, item);
+}
+
+int dequeue(struct Queue *queue) {
+    if (isEmpty(queue)) {
+        return INT_MIN;
+    }
+    int item = queue-&gt;array[queue-&gt;front];
+    queue-&gt;front = (queue-&gt;front + 1) % queue-&gt;capacity;
+    queue-&gt;size = queue-&gt;size - 1;
+    return item;
+}
+
+int front(struct Queue* queue) 
+{ 
+    if (isEmpty(queue)) 
+        return INT_MIN; 
+    return queue-&gt;array[queue-&gt;front]; 
+} 
+
+int rear(struct Queue* queue) 
+{ 
+    if (isEmpty(queue)) 
+        return INT_MIN; 
+    return queue-&gt;array[queue-&gt;rear]; 
+} 
+
+int main() {
+    struct Queue* queue = createQueue(1000); 
+
+    enqueue(queue, 10); 
+    enqueue(queue, 20); 
+    enqueue(queue, 30); 
+    enqueue(queue, 40); 
+
+    printf(&quot;%d kuyruktan çıkarıldı.\n\n&quot;, dequeue(queue)); 
+
+    printf(&quot;Kuyruğun ilk elemanı: %d\n&quot;, front(queue)); 
+    printf(&quot;Kuyruğun son elemanı: %d\n&quot;, rear(queue)); 
+
+    return 0; 
+    return 0;
+}
+</code></pre>
+<p>Queue Python İmplementasyonu:</p>
+<pre><code>class Queue: 
+    def __init__(self, capacity): 
+        self.front = self.size = 0
+        self.rear = capacity -1
+        self.Q = [None]*capacity 
+        self.capacity = capacity 
+
+    def is_full(self): 
+        return self.size == self.capacity 
+
+    def is_empty(self): 
+        return self.size == 0
+
+    def enqueue(self, item): 
+        if self.is_full(): 
+            print('Kuyruk dolu.') 
+            return
+        self.rear = (self.rear + 1) % (self.capacity) 
+        self.Q[self.rear] = item 
+        self.size = self.size + 1
+        print('{0} kuyruğa eklendi.'.format(str(item))) 
+
+    def dequeue(self): 
+        if self.is_empty(): 
+            print('Kuyruk boş.') 
+            return
+        print('{0} kuyruktan çıkarıldı.'.format(str(self.Q[self.front]))) 
+        self.front = (self.front + 1) % (self.capacity) 
+        self.size = self.size -1
+
+    def que_front(self): 
+        if self.is_empty(): 
+            print('Kuyruk boş.') 
+        print('İlk eleman: ', self.Q[self.front]) 
+
+    def que_rear(self): 
+        if self.is_empty(): 
+            print('Kuyruk boş.') 
+        print('Son eleman: ',  self.Q[self.rear]) 
+
+
+if __name__ == '__main__': 
+    queue = Queue(30) 
+    queue.enqueue(10) 
+    queue.enqueue(20) 
+    queue.enqueue(30) 
+    queue.enqueue(40) 
+    print()
+    queue.dequeue()
+    print() 
+    queue.que_front() 
+    queue.que_rear() 
+</code></pre>
+<h1 id="binary-tree">Binary Tree</h1>
+<p>Binary Tree (İkili Ağaç) yapısına değinmeden önce genel ağaç yapısı hakkında bilgi vermek istiyorum. Ağaç veri yapısının bilgisayar bilimlerinde kullanımı oldukça yaygındır. Veritabanı yönetim sistemlerinden, sıkıştırma algoritmalarına, oyun programlarının hamle seçeneklerinin belirlenmesinde ve bir çok bilgisayar probleminde yer edinmiştir. Ağaç veri yapısına bağlı bazı kavramlar vardır. Bunlar, çocuk (child), kardeş (sibling), aile (parent) olarak bir kısmı böylece sıralanabilir. Child kavramı bir düğüme doğrudan bağlı olan düğümlere o düğümün çocukları adı verilir. Kardeş ise aynı düğüme bağlı olan düğümlerdir. Aile (parent) ise düğümlerin doğrudan bağlı oldukları düğümlere denir. Bir de yaprak (leaf) kavramı vardır bu ise çocuksuz düğümlere verilen addır.</p>
+<p>Ağaç veri yapısına ağaç denilmesinin sebebi gerçek bir ağaca benzerlik göstermesidir ancak farkı kök düğümün aşağıda değil en tepede olmasıdır. En tepede kök düğüm bulunur ve ağacın dalları gibi diğer düğümler o düğümden doğar. Binary Tree yani ikili ağaç yapısında her düğümün sadece iki çocuğu olabilir. Ağaç yapısının daha iyi anlaşılmasına yönelik aşağıda ikili ağaca yapısını gösteren bir görsel verilmiştir.
+<br/>
+<img alt="Binary Tree WEBP" src="../img/binary-tree.webp" />
+<br/>
+Binary Tree C İmplementasyonu:</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct tree {
+    int bilgi;
+    char mesaj[100];
+    struct tree *sag, *sol; 
+} binaryTree;
+
+binaryTree *kok = NULL;
+
+void ekle(binaryTree *agacKok, binaryTree *yeni) {
+    if (agacKok == NULL) {
+        kok = yeni;
+    } else {
+        if (yeni-&gt;bilgi &lt;= agacKok-&gt;bilgi) {
+            if (agacKok-&gt;sol == NULL) {
+                agacKok-&gt;sol = yeni;
+            } else {
+                ekle(agacKok-&gt;sol, yeni);
+            }
+        } else {
+            if (agacKok-&gt;sag == NULL) {
+                agacKok-&gt;sag = yeni;
+            } else {
+                ekle(agacKok-&gt;sag, yeni);
+            }
+        }
+    }
+}
+
+void listele(binaryTree *agacKok) {
+    if (agacKok != NULL) {
+        listele(agacKok-&gt;sol);
+        printf(&quot;%d: %s\n&quot;, agacKok-&gt;bilgi, agacKok-&gt;mesaj);
+        listele(agacKok-&gt;sag);
+    }
+}
+
+binaryTree *ara(binaryTree *agacKok, int aranan) {
+    while (agacKok != NULL &amp;&amp; agacKok-&gt;bilgi != aranan) {
+        if (aranan &lt; agacKok-&gt;bilgi) {
+            agacKok = agacKok-&gt;sol;
+        } else {
+            agacKok = agacKok-&gt;sag;
+        }
+    }
+    return agacKok;
+}
+
+binaryTree *sil(binaryTree *agacKok, int silinecek) {
+    binaryTree *qa, *q, *qc, *sa, *s;
+    if (agacKok == NULL) {
+        return NULL;
+    }
+    q = agacKok;
+    qa = NULL; 
+    while (q != NULL &amp;&amp; q-&gt;bilgi != silinecek) {
+        qa = q;
+        if (silinecek &lt;= q-&gt;bilgi) {
+            q = q-&gt;sol;
+        } else {
+            q = q-&gt;sag;
+        }
+    }
+    if (q == NULL) {
+        return NULL;
+    }
+
+    if (q-&gt;sol != NULL &amp;&amp; q-&gt;sag != NULL) {
+        s = q-&gt;sol;
+        sa = q;
+        while (s-&gt;sag != NULL) {
+            sa = s;
+            s = s-&gt;sag;
+        }
+        q-&gt;bilgi = s-&gt;bilgi;
+        strcpy(q-&gt;mesaj, s-&gt;mesaj);
+        q = s;
+        qa = sa;
+    }
+
+    if (q-&gt;sol != NULL) {
+        qc = q-&gt;sol;
+    } else {
+        qc = q-&gt;sag;
+    }
+
+    if (q == agacKok) {
+        kok = qc;
+    } else {
+        if (q == qa-&gt;sol) {
+            qa-&gt;sol = qc;
+        } else {
+            qa-&gt;sag = qc;
+        }
+    }
+    free(q);
+    return q;
+}
+
+int main() {
+    binaryTree *bt1 = malloc(sizeof(binaryTree));
+    bt1-&gt;bilgi = 1;
+    strcpy(bt1-&gt;mesaj, &quot;Merhaba&quot;);
+
+
+    binaryTree *bt2 = malloc(sizeof(binaryTree));
+    bt2-&gt;bilgi = 2;
+    strcpy(bt2-&gt;mesaj, &quot;Nasılsın&quot;);
+
+    binaryTree *bt3 = malloc(sizeof(binaryTree));
+    bt3-&gt;bilgi = 3;
+    strcpy(bt3-&gt;mesaj, &quot;Görüşürüz&quot;);
+
+    ekle(kok, bt1);
+    ekle(kok, bt2);
+    ekle(kok, bt3);
+
+    printf(&quot;Ekleme sonrası listeleme:\n&quot;);
+    listele(kok);
+
+    binaryTree *bulunan = malloc(sizeof(binaryTree));
+    bulunan = ara(kok, 2);
+    printf(&quot;Bulunan -&gt; %d: %s\n&quot;, bulunan-&gt;bilgi, bulunan-&gt;mesaj);
+
+    sil(kok, 3);
+    printf(&quot;Silme işlemi sonrası listeleme:\n&quot;);
+    listele(kok);
+    return 0;
+}
+</code></pre>
+<p>Binary Tree Python İmplementasyonu:</p>
+<pre><code>class BinaryTree:
+    def __init__(self):
+        self.bilgi = None
+        self.mesaj = None
+        self.sol = None
+        self.sag = None
+
+kok = None
+
+def ekle(agac_kok, yeni):
+    global kok
+    if (agac_kok == None):
+        kok = yeni
+    else:
+        if (yeni.bilgi &lt;= agac_kok.bilgi):
+            if (agac_kok.sol == None):
+                agac_kok.sol = yeni
+            else:
+                ekle(agac_kok.sol, yeni)
+        else:
+            if (agac_kok.sag == None):
+                agac_kok.sag = yeni
+            else:
+                ekle(agac_kok.sag, yeni)
+
+def listele(agac_kok):
+    if (agac_kok != None):
+        listele(agac_kok.sol)
+        print(&quot;{0}: {1}&quot;.format(agac_kok.bilgi, agac_kok.mesaj))
+        listele(agac_kok.sag)
+
+def ara(agac_kok, aranan):
+    while ((agac_kok != None) and (agac_kok.bilgi != aranan)):
+        if (aranan &lt; agac_kok.bilgi):
+            agac_kok = agac_kok.sol
+        else:
+            agac_kok = agac_kok.sag
+    return agac_kok
+
+def minValueNode(node):
+    current = node
+    while(current.left is not None):
+        current = current.left
+    return current
+
+def sil(agac_kok, silinecek):
+    if agac_kok == None:
+        return agac_kok
+
+    if silinecek &lt; agac_kok.bilgi:
+        agac_kok.sol = sil(agac_kok.sol, silinecek)
+    elif silinecek &gt; agac_kok.bilgi:
+        agac_kok.sag = sil(agac_kok.sag, silinecek)
+    else:
+        if agac_kok.sol == None:
+            temp = agac_kok.sag
+            agac_kok = None
+            return temp
+        elif agac_kok.sag == None:
+            temp = agac_kok.sol
+            agac_kok = None
+            return temp
+        temp = minValueNode(agac_kok.sag)
+        agac_kok.bilgi = temp.bilgi
+        agac_kok.sag = sil(agac_kok.sag, temp.bilgi)
+    return agac_kok
+
+
+if __name__ == '__main__':
+    bt1 = BinaryTree()
+    bt1.bilgi = 1
+    bt1.mesaj = &quot;Merhaba&quot;
+
+    bt2 = BinaryTree()
+    bt2.bilgi = 2
+    bt2.mesaj = &quot;Nasılsın&quot;
+
+    bt3 = BinaryTree()
+    bt3.bilgi = 3
+    bt3.mesaj = &quot;Görüşürüz&quot;
+
+    ekle(kok, bt1)
+    ekle(kok, bt2)
+    ekle(kok, bt3)
+
+    print('Ekleme sonrası listeleme:')
+    listele(kok)
+
+    sil(kok, 3)
+    print('Silme işlemi sonrası listeleme:')
+    listele(kok)
+
+    bulunan = ara(kok, 2)
+    print('Bulunan -&gt; {0}: {1}'.format(bulunan.bilgi, bulunan.mesaj))
+</code></pre>
+<p>Yukarıda verilen kodlar karmaşık görünebilir özellikle de silme kısmı. Silme kısmında ağacın denge yapısını bozmadan bir silme işlemi gerçekleştirilmektedir. Daha iyi anlamak adına parça parça çalıştırıp inceleyebilirsiniz.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Algoritmalar - Veri Yapıları ve Algoritmalar</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Veri Yapıları ve Algoritmalar</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Hoşgeldiniz</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Algoritmalar</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../veri-yapilari/" class="nav-link">Veri Yapıları</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../veri-yapilari/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#algoritmalar" class="nav-link">Algoritmalar</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#insertion-sort" class="nav-link">Insertion Sort</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#selection-sort" class="nav-link">Selection Sort</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#bubble-sort" class="nav-link">Bubble Sort</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#merge-sort" class="nav-link">Merge Sort</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#heap-sort" class="nav-link">Heap Sort</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#quick-sort" class="nav-link">Quick Sort</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#linear-search" class="nav-link">Linear Search</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#binary-search" class="nav-link">Binary Search</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="algoritmalar">Algoritmalar</h1>
+<p>Bu kısımda sıralama ve arama algoritmalarına dair anlatımlar yer alıyor.</p>
+<h1 id="insertion-sort">Insertion Sort</h1>
+<p>Bir sayı dizisini sıralamak için uygulayabileceğimiz algoritmalardan birisi insertion sort. Bu algoritmanın çalışma mantığını size açıklamaya çalışacağım.
+<br/>
+<img alt="Insertion Sort GIF" src="../img/insertion-sort.gif" />
+<br/>
+Insertion sort algoritması diziyi iki parçaya bölünmüş ayrı ayrı iki dizi gibi ele alır. Başlangıçta soldaki dizide sadece dizinin birinci elemanı vardır, sağdaki dizide ise geriye kalan elemanlar. Devamında sağdaki dizinin ilk elemanını alır ve soldaki dizinin ilk elemanından büyük veya küçük olmasına göre soldaki dizi üzerine geçirerek sıralar. Bu işlem benzer şekilde devam eder ve sağdaki diziden eleman alarak alınan elemanın soldaki dizi içerisinde uygun pozisyona yerleştirilmesini sağlar. Sağdaki dizideki son elemanın soldaki dizide yerine yerleştirilmesine kadar bu aşama kendini tekrarlar.</p>
+<p>Bu algoritmanın C ve Python dillerinde implementasyonunu aşağıda veriyorum.</p>
+<p>Insertion Sort C İmplementasyonu:</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+void insertionSort(int D[], int N) {
+    int i, k, ekle;
+    for(i=1; i&lt;N; i++) {
+        ekle = D[i];
+        for(k=i-1; k&gt;=0 &amp;&amp; ekle&lt;=D[k]; k--) {
+            D[k+1] = D[k];
+        }
+        D[k+1] = ekle;
+    }
+}
+
+int main() {
+    int dizi[] = {5, 3, 11, 9, 21, 18, 20, 4};
+    int uzunluk = sizeof(dizi) / sizeof(dizi[0]);
+    insertionSort(dizi, uzunluk);
+
+    for(int i=0; i&lt;uzunluk; i++) {
+        printf(&quot;%d &quot;, dizi[i]);
+    }
+    printf(&quot;\n&quot;);
+
+    return 0;
+}
+</code></pre>
+<p>Insertion Sort Python İmplementasyonu:</p>
+<pre><code>def insertion_sort(my_list):
+    for i in range(0, len(my_list)):
+        current_value = my_list[i]
+        k = i - 1
+        while k&gt;= 0 and current_value &lt;= my_list[k]:
+            my_list[k+1] = my_list[k]
+            k -= 1
+        my_list[k+1] = current_value
+    return my_list
+
+listem = [5, 3, 11, 9, 21, 18, 20, 4]
+
+print(insertion_sort(listem))
+</code></pre>
+<p>Daha iyi anlamak isterseniz debugging yaparak veya kod bloklarının içerisinde uygun gördüğünüz yerlere yazdırma işlemleri ekleyerek inceleyebilirsiniz. Umarım açıklayıcı olmuştur.</p>
+<h1 id="selection-sort">Selection Sort</h1>
+<p>Bir sayı dizisini sıralamak için kullanabileceğimiz algoritmalardan biri selection sort yani seçmeli sıralama algoritmasıdır. Bu algoritma şöyle bir mantıkla çalışır: İlk olarak dizinin en küçük elemanını tespit eder ve dizinin en başına yerleştirir. Sonra ilk elemanı ayrı bir şekilde dizinin başında tutar ve geri kalan elemanlardan en küçüğünü bulur ve ikinci sıraya yerleştirir böylece sıralanmış iki eleman elde edilir ve geri kalan elemanlardan gene en küçüğünü bularak sıralanmış olanların devamına ekler ve bu böyle devam eder.</p>
+<p>Benzer şekilde sıralama işlemini dizinin başından değil sonundan başlayarak benzer mantıkla sıralama yapabilir.
+<br/>
+<img alt="Selection Sort GIF" src="../img/selection-sort.gif" />
+<br/>
+Selection Sort C İmplementasyonu:</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+void selectionSort(int D[], int N) {
+    int i, j, index, enKucuk;
+    for(i=0; i&lt;(N-1); i++) {
+        enKucuk = D[N-1];
+        index = N - 1;
+        for(j=i; j&lt;(N-1); j++) {
+            if(D[j] &lt; enKucuk) {
+                enKucuk = D[j];
+                index = j;
+            }
+        }
+        D[index] = D[i];
+        D[i] = enKucuk;
+
+    }
+}
+
+int main() {
+    int dizi[] = {5, 3, 11, 9, 21, 18, 20, 4};
+    int uzunluk = sizeof(dizi) / sizeof(dizi[0]);
+    selectionSort(dizi, uzunluk);
+    for(int i=0; i&lt;uzunluk; i++) {
+        printf(&quot;%d &quot;, dizi[i]);
+    }
+    printf(&quot;\n&quot;);
+    return 0;
+}
+</code></pre>
+<p>Selection Sort Python İmplementasyonu:</p>
+<pre><code>def selection_sort(A):
+    for i in range(len(A)): 
+        min_idx = i 
+        for j in range(i+1, len(A)): 
+            if A[min_idx] &gt; A[j]: 
+                min_idx = j    
+        A[i], A[min_idx] = A[min_idx], A[i] 
+    return A
+
+my_list = [5, 3, 11, 9, 21, 18, 20, 4]
+print(selection_sort(my_list))
+</code></pre>
+<p>Daha detaylı anlamak için debugging yapabilirsiniz veya ilgili yerlere yazdırma fonksiyonları ekleyerek inceleyebilirsiniz. Aynı zamanda yukarıdaki görselde anlamanıza yardımcı olacaktır.</p>
+<h1 id="bubble-sort">Bubble Sort</h1>
+<p>Bubble Sort algoritması tasarımı basit ancak etkin olmayan bir algoritmadır. Bu algoritma elemanlar üzerinde başlangıçtan sona doğru ilerlerken komşu iki elemanın yer değiştirmesine dayanır. Elemanlar üzerinde her bir dolaşma sonucunda en büyük eleman en sağda yerini alır ve bir sonraki dolaşmadan hariç tutulur. Bu işlemler elemanlar dizisi doğru bir şekilde sıralanana kadar devam eder. Daha iyi anlamak için aşağıdaki resme, Python ve C dilindeki implementasyonuna göz atabilirsiniz. Bilgisayarınızda kodlayarak çalıştırmak da anlamanıza yardımcı olacaktır.
+<br/>
+<img alt="Bubble Sort GIF" src="../img/bubble-sort.gif" />
+<br/>
+Bubble Sort C İmplementasyonu:</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+void bubbleSort(int D[], int N) {
+    int gecici, i, k;
+    for(i=0; i&lt;(N-1); i++) {
+        for(k=0; k&lt;(N-1-i); k++) {
+            if (D[k] &gt; D[k+1]) {
+                gecici = D[k];
+                D[k] = D[k+1];
+                D[k+1] = gecici;
+            }
+        }
+    }
+}
+
+int main() {
+    int dizi[] = {5, 3, 11, 9, 21, 18, 20, 4};
+    int uzunluk = sizeof(dizi) / sizeof(dizi[0]);
+    bubbleSort(dizi, uzunluk);
+
+    for(int i=0; i&lt;uzunluk; i++) {
+        printf(&quot;%d &quot;, dizi[i]);
+    }
+    printf(&quot;\n&quot;);
+    return 0;
+}
+</code></pre>
+<p>Bubble Sort Python Dili İmplementasyonu:</p>
+<pre><code>def bubble_sort(arr): 
+    n = len(arr) 
+    for i in range(n): 
+        for j in range(0, n-i-1): 
+            if arr[j] &gt; arr[j+1] : 
+                arr[j], arr[j+1] = arr[j+1], arr[j] 
+    return arr
+
+
+my_list = [5, 3, 11, 9, 21, 18, 20, 4]
+
+print(bubble_sort(my_list))
+</code></pre>
+<h1 id="merge-sort">Merge Sort</h1>
+<p>Merge Sort böl ve yönet yaklaşımına dayanan, rekürsif bir algoritmadır. Sıralanması istenen sayı dizisini öncelikle iki parçaya böler, devamında kalan parçaları böle böle her parçada sadece bir eleman kalana kadar bu işlemi devam ettirir. Bu aşamadan sonra birleştirme aşamasına geçer. Birleştirme aşamasında tek başına kalan elemanları sırasıyla sıralı bir şekilde birleştirir.
+<br/>
+<img alt="Merge Sort GIF" src="../img/merge-sort.gif" />
+<br/>
+Merge Sort C İmplementasyonu:</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+void merge(int arr[], int l, int m, int r) {
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 = r - m;
+    int L[n1], R[n2];
+
+    for (i = 0; i &lt; n1; i++)
+        L[i] = arr[l + i];
+    for (j = 0; j &lt; n2; j++)
+        R[j] = arr[m + 1 + j];
+
+
+    i = 0; 
+    j = 0; 
+    k = l; 
+    while (i &lt; n1 &amp;&amp; j &lt; n2) {
+        if (L[i] &lt;= R[j]) {
+            arr[k] = L[i];
+            i++;
+        }
+        else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i &lt; n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j &lt; n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+void mergeSort(int arr[], int l, int r) {
+    if (l &lt; r) {
+        int m = l + (r - l) / 2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+        merge(arr, l, m, r);
+    }
+}
+
+int main() {
+    int dizi[] = {5, 3, 11, 9, 21, 18, 20, 4};
+    int uzunluk = sizeof(dizi) / sizeof(dizi[0]);
+    mergeSort(dizi, 0, uzunluk - 1);
+
+    for(int i=0; i&lt;uzunluk; i++) {
+        printf(&quot;%d &quot;, dizi[i]);
+    }
+    printf(&quot;\n&quot;);
+    return 0;
+}
+</code></pre>
+<p>Merge Sort Python İmplementasyonu:</p>
+<pre><code>def merge_sort(arr):
+    if len(arr) &gt; 1: 
+        mid = len(arr)//2
+        L = arr[:mid]
+        R = arr[mid:]
+        merge_sort(L)
+        merge_sort(R)
+
+        i = j = k = 0
+        while i &lt; len(L) and j &lt; len(R):
+            if L[i] &lt; R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+
+        while i &lt; len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+
+        while j &lt; len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1
+    return arr
+
+my_list = [5, 3, 11, 9, 21, 18, 20, 4]
+
+print(merge_sort(my_list))
+</code></pre>
+<h1 id="heap-sort">Heap Sort</h1>
+<p>Heap Sort karşılaştırmaya dayalı Binary Heap veri yapısı tabanlı bir sıralama algoritmasıdır. İlk aşamada maksimum değeri bulup onu en sona yerleştirmesinden ötürü Selection Sort ile benzerlik gösterir. Kalan elemanlar için işlemi benzer şekilde tekrarlayarak sıralamayı tamamlar. Algoritmanın tümüyle kavranmasının yazıyla sağlanmasının zor olacağından hareketli resmi (GIF) ve kodları takip etmeniz yararınıza olur.
+<br/>
+<img alt="Heap Sort GIF" src="../img/heap-sort.gif" />
+<br/>
+Heap Sort C İmplementasyonu:</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void heapify(int arr[], int n, int i) {
+    int largest = i;
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
+
+    if (left &lt; n &amp;&amp; arr[left] &gt; arr[largest])
+        largest = left;
+
+    if (right &lt; n &amp;&amp; arr[right] &gt; arr[largest])
+        largest = right;
+
+    if (largest != i) {
+        swap(&amp;arr[i], &amp;arr[largest]);
+        heapify(arr, n, largest);
+    }
+}
+
+void heapSort(int arr[], int n) {
+    for (int i = n / 2 - 1; i &gt;= 0; i--)
+        heapify(arr, n, i);
+
+    for (int i = n - 1; i &gt;= 0; i--) {
+        swap(&amp;arr[0], &amp;arr[i]);
+        heapify(arr, i, 0);
+    }
+}
+
+int main() {
+    int dizi[] = {5, 3, 11, 9, 21, 18, 20, 4};
+    int uzunluk = sizeof(dizi) / sizeof(dizi[0]);
+    heapSort(dizi, uzunluk);
+
+    for(int i=0; i&lt;uzunluk; i++) {
+        printf(&quot;%d &quot;, dizi[i]);
+    }
+    printf(&quot;\n&quot;);
+    return 0;
+}
+</code></pre>
+<p>Heap Sort Python İmplementasyonu:</p>
+<pre><code>def heapify(arr, n, i):
+    largest = i  
+    l = 2 * i + 1   
+    r = 2 * i + 2   
+
+    if l &lt; n and arr[largest] &lt; arr[l]:
+        largest = l
+
+    if r &lt; n and arr[largest] &lt; arr[r]:
+        largest = r
+
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]  
+        heapify(arr, n, largest)
+
+def heap_sort(arr):
+    n = len(arr)
+
+    for i in range(n//2 - 1, -1, -1):
+        heapify(arr, n, i)
+
+    for i in range(n-1, 0, -1):
+        arr[i], arr[0] = arr[0], arr[i]  
+        heapify(arr, i, 0)
+
+    return arr
+
+my_list = [5, 3, 11, 9, 21, 18, 20, 4]
+
+print(heap_sort(my_list))
+</code></pre>
+<h1 id="quick-sort">Quick Sort</h1>
+<p>Quick Sort algoritması sıralama işlemini yapabilmek üzere böl ve yönet yaklaşımını kullanır. Sıralanacak dizi belirlenen bir sınır değere göre iki ayrı diziye ayrılır. Mesala sınıf değer 5 ise 5 ten küçük elemanlar ve 5 ten büyük elemanlar olarak dizi ikiye ayrılmış olur. Seçilen sınır değer dizi elemanlarından biridir. Tercihe göre bu sınır değer dizilerden birine konabilir. Algoritma devamında bu dizileride kendi içinde iki ayrı diziye böler ve diziler parçalanamayacak duruma gelene kadar bu böyle devam eder. Parçalanmış elemanların rekürsif fonksiyon çağırılmasıyla birlikte sıralanması sonucu sıralı dizinin elde edilmesiyle algoritma son bulur.
+<br/>
+<img alt="Quick Sort GIF" src="../img/quick-sort.gif" />
+<br/>
+Quick Sort C İmplementasyonu:</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+void quickSort(int dizi[], int sol, int sag) {
+    int j, k;
+    int ortadaki, gecici;
+
+    k = sol;
+    j = sag;
+    ortadaki = dizi[(sol+sag)/2];
+
+    do {
+        while(dizi[k]&lt;ortadaki &amp;&amp; k&lt;sag) {
+            k++;
+        }
+        while(ortadaki&lt;dizi[j] &amp;&amp; j&gt;sol) {
+            j--;
+        }
+        if(k&lt;=j) {
+            gecici = dizi[k];
+            dizi[k] = dizi[j];
+            dizi[j] = gecici;
+            k++;
+            j--;
+        }
+    } while(k&lt;=j);
+
+    if (sol&lt;j) {
+        quickSort(dizi, sol, j);
+    }
+    if (k&lt;sag) {
+        quickSort(dizi, k, sag);
+    }
+}
+
+int main() {
+    int dizi[] = {5, 3, 11, 9, 21, 18, 20, 4};
+    int uzunluk = sizeof(dizi) / sizeof(dizi[0]);
+    quickSort(dizi, 0, uzunluk - 1);
+
+    for(int i=0; i&lt;uzunluk; i++) {
+        printf(&quot;%d &quot;, dizi[i]);
+    }
+    printf(&quot;\n&quot;);
+    return 0;
+}
+</code></pre>
+<p>Quick Sort Python İmplementasyonu:</p>
+<pre><code>def partition(arr, low, high): 
+    i = (low-1)
+    pivot = arr[high]
+
+    for j in range(low, high):
+        if arr[j] &lt;= pivot: 
+            i = i+1
+            arr[i], arr[j] = arr[j], arr[i] 
+
+    arr[i+1], arr[high] = arr[high], arr[i+1] 
+    return (i+1) 
+
+def quick_sort(arr, low, high): 
+    if len(arr) == 1: 
+        return arr 
+    if low &lt; high: 
+        pi = partition(arr, low, high) 
+        quick_sort(arr, low, pi-1) 
+        quick_sort(arr, pi+1, high) 
+    return arr
+
+my_list = [5, 3, 11, 9, 21, 18, 20, 4]
+
+print(quick_sort(my_list, 0, (len(my_list) -1)))
+</code></pre>
+<p>Daha iyi anlamak için kodlar içerisine yazdırmak fonksiyonları ekleyebilir veya debugging yaparak değişkenleri inceleyebilirsiniz.</p>
+<h1 id="linear-search">Linear Search</h1>
+<p>Linear Search (Doğrusal Arama) aynı zamanda Sequential Search (Ardışıl Arama) ismiyle de bilinmektedir. Bu algoritma en sade arama algoritmasıdır. Yaptığı iş birinci elemandan başlayarak aranan eleman bulunana kadar sayı dizisi üzerinde sırayla gezmektir.
+<br/>
+<img alt="Linear Search GIF" src="../img/linear-search.gif" />
+<br/>
+Linear Search C İmplementasyonu:</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+int linearSearch(int dizi[], int N, int aranan) {
+    for(int i=0; i&lt;N; i++) {
+        if (dizi[i] == aranan) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int dizi[] = {5, 3, 11, 9, 21, 18, 20, 4};
+    int uzunluk = sizeof(dizi) / sizeof(dizi[0]);
+    int aranan = 21;
+    int arananElemanIndex = linearSearch(dizi, uzunluk, aranan);
+    printf(&quot;Aranan elemanın indeksi: %d\n&quot;, arananElemanIndex);
+    return 0;
+}
+</code></pre>
+<p>Linear Search Python İmplementasyonu:</p>
+<pre><code>def linear_search(liste, aranan):
+    for i in range(0, len(liste)):
+        if (liste[i] == aranan):
+            return i
+    return -1
+
+liste = [5, 3, 11, 9, 21, 18, 20, 4]
+indeks = linear_search(liste, 21)
+print('Aranan elemanın indeksi: {0}'.format(indeks))
+</code></pre>
+<h1 id="binary-search">Binary Search</h1>
+<p>Binary Search (İkili Arama) algoritması sadece sıralı veriler üzerinde çalışır. Algoritma ilk önce dizinin ortadaki elemanına bakar eğer aranan ortadaki eleman değilse, aranan eleman ya ortadaki elemanın solunda ya da sağındadır veya veriler içinde bulunmuyor da olabilir. Elemanın hangi tarafta olduğu ortadaki elemandan büyük veya küçük olmasına göre belirlenir. Eğer eleman büyük ise dizinin sağ tarafına geçilerek o taraftadaki ortadaki eleman değerine bakılır. Yine bulunmazsa bu ortadaki eleman değerine göre o elemanın sağına veya soluna geçilerek benzer şekilde arama süreci işler.
+<br/>
+<img alt="Binary Search GIF" src="../img/binary-search.gif" />
+<br/>
+Binary Search C İmplementasyonu:</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+int binarySearch(int D[], int N, int aranan) {
+    int ortadaki, sol=0, sag=N-1;
+    while(sol&lt;=sag) {
+        ortadaki = (sol+sag)/2;
+        if (aranan == D[ortadaki]) {
+            return ortadaki;
+        } else if (aranan &gt; D[ortadaki]) {
+            sol = ortadaki + 1;
+        } else {
+            sag = ortadaki - 1;
+        }
+    }
+    return -1;
+}
+
+
+int main() {
+    int dizi[] = {3, 4, 5, 9, 11, 18, 20, 21};
+    int uzunluk = sizeof(dizi) / sizeof(dizi[0]);
+    int aranan = 21;
+    int arananElemanIndex = binarySearch(dizi, uzunluk, aranan);
+    printf(&quot;Aranan elemanın indeksi: %d\n&quot;, arananElemanIndex);
+    return 0;
+}
+</code></pre>
+<p>Binary Search Python İmplementasyonu:</p>
+<pre><code>def binary_search(liste, aranan):
+    sol = 0
+    sag = len(liste) - 1
+    while (sol &lt;= sag):
+        ortadaki = (sol + sag) // 2
+        if (aranan == liste[ortadaki]):
+            return ortadaki
+        elif (aranan &gt; liste[ortadaki]):
+            sol = ortadaki + 1
+        else:
+            sag = ortadaki -1
+    return -1
+
+liste = [3, 4, 5, 9, 11, 18, 20, 21]
+indeks = binary_search(liste, 21)
+print('Aranan elemanın indeksi: {0}'.format(indeks))
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
